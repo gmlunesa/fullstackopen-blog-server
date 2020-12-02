@@ -16,7 +16,7 @@ mongoose
     useCreateIndex: true,
   })
   .then((result) => {
-    logger.error("Successfully connected to MongoDB");
+    logger.info("Successfully connected to MongoDB");
   })
   .catch((error) => {
     logger.error("Error connecting to MongoDB : ", error.message);
@@ -30,5 +30,9 @@ app.use("/api/blogs", blogsRouter);
 
 app.use(middleware.unknownEndpoint);
 app.use(middleware.errorHandler);
+
+app.listen(config.PORT, () => {
+  logger.info(`Server running on port ${config.PORT}`);
+});
 
 module.exports = app;
